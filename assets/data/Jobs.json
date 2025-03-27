@@ -1,0 +1,30 @@
+[
+    {
+        "id": 1,
+        "title": "Software Developer",
+        "experience": "3+ Years",
+        "skills": "Java, Python, SQL",
+        "description": "Build and innovate cutting-edge software and data solutions."
+    },
+    {
+        "id": 2,
+        "title": "Data Analyst",
+        "experience": "2+ Years",
+        "skills": "Python, SQL, Power BI",
+        "description": "Analyze business data and create actionable insights."
+    },
+    {
+        "id": 3,
+        "title": "Project Manager",
+        "experience": "5+ Years",
+        "skills": "Agile, Scrum, Leadership",
+        "description": "Lead IT projects and coordinate development teams."
+    },
+    {
+        "id": "4",
+        "title": "xx",
+        "experience": "15",
+        "skills": "gggg",
+        "description": "ttttt"
+    }
+]
