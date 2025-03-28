@@ -771,21 +771,22 @@ The digital world is evolving rapidly, and businesses must adapt to stay relevan
 
           </div>
 
-          <div class="col-lg-8">
+       
    <div class="col-lg-8">
-  <form id="contact-form" data-aos="fade-up" data-aos-delay="200">
-    <div class="row gy-4">
+   
+<form name="submit-to-google-sheet">
+  <div class="row gy-4">
       <div class="col-md-6">
-        <input type="text" id="name" class="form-control" placeholder="Your Name" required>
+        <input type="text" id="name" name="name" class="form-control" placeholder="Your Name" required>
       </div>
       <div class="col-md-6">
-        <input type="email" id="email" class="form-control" placeholder="Your Email" required>
+        <input type="email" id="email" name="email" class="form-control" placeholder="Your Email" required>
       </div>
       <div class="col-md-12">
-        <input type="text" id="subject" class="form-control" placeholder="Subject" required>
+        <input type="text" id="subject" name="subject" class="form-control" placeholder="Subject" required>
       </div>
       <div class="col-md-12">
-        <textarea id="message" class="form-control" rows="6" placeholder="Message" required></textarea>
+        <textarea id="message" name="message" class="form-control" rows="6" placeholder="Message" required></textarea>
       </div>
       <div class="col-md-12 text-center">
         <div id="loading" style="display:none;">Loading...</div>
@@ -793,46 +794,24 @@ The digital world is evolving rapidly, and businesses must adapt to stay relevan
         <div id="sent-message" style="display:none; color:green;">Your message has been sent. Thank you!</div>
         <button type="submit">Send Message</button>
       </div>
-    </div>
-  </form>
-</div>
+  </div>
+</form>
 
 <script>
-document.getElementById("contact-form").addEventListener("submit", function(e){
-  e.preventDefault();
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwS9C5EwcnW_TDzsbxBy-1XbH-V7-pJtxIyOX65avIRTa2-MpX271XcvANCbWwbnCuzfA/exec'
+  const form = document.forms['submit-to-google-sheet']
 
-  const loading = document.getElementById('loading');
-  const errorMessage = document.getElementById('error-message');
-  const sentMessage = document.getElementById('sent-message');
-
-  loading.style.display = 'block';
-  errorMessage.style.display = 'none';
-  sentMessage.style.display = 'none';
-
-  const formData = {
-    name: document.getElementById('name').value,
-    email: document.getElementById('email').value,
-    subject: document.getElementById('subject').value,
-    message: document.getElementById('message').value,
-  };
-
-  fetch('https://script.google.com/macros/s/AKfycbzcGE0Rp7nLH_nKZSvXd1bp6hsf5trwsXQTz4IzOJ9I2CZBGIVIbcl4EvC8Nb85x9zLtA/exec?sheet=ContactForm', {
-    method: 'POST',
-    body: JSON.stringify(formData),
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    console.log(form)
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
   })
-  .then(res => res.text())
-  .then(msg => {
-    loading.style.display = 'none';
-    sentMessage.style.display = 'block';
-    document.getElementById("contact-form").reset();
-  })
-  .catch(err => {
-    loading.style.display = 'none';
-    errorMessage.style.display = 'block';
-    console.error(err);
-  });
-});
 </script>
+  
+</div>
+
 
 
           </div><!-- End Contact Form -->
